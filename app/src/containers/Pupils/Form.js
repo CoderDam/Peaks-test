@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 
 /* Local import */
-import App from 'src/components/App';
-import { getData } from 'src/store/reducer';
+import Form from 'src/components/Pupils/Form';
+import { changeField, updatePupils } from 'src/store/reducer';
 
 
 /* Code */
@@ -15,14 +15,19 @@ const mapStateToProps = state => ({
 
 // Dispatch
 const mapDispatchToProps = dispatch => ({
-  getData: () => dispatch(getData()),
+  actions: {
+    update: () => dispatch(updatePupils()),
+    inputs: {
+      change: fieldObj => dispatch(changeField(fieldObj)),
+    },
+  },
 });
 
 // Connect
 const container = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(Form);
 
 
 /* Export */

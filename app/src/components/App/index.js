@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <main id="app">
-        Tous en classe !
+        <h1 id="app-title">Tous en classe !</h1>
         <Pupils />
       </main>
     );

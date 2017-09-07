@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 const Pupil = ({ pupil }) => (
   <div className="pupil">
     <div className="pupil-image">
-      <img src={pupil.profilePic} alt={pupil.name} />
+      <img src={pupil.picture} alt={pupil.name} />
     </div>
     <span className="pupil-name">{pupil.name}</span>
   </div>
@@ -21,7 +21,7 @@ Pupil.propTypes = {
   pupil: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    profilePic: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
   }).isRequired,
 };
 
