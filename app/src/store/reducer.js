@@ -2,21 +2,34 @@
 
 
 /* Local import */
+import fakePupils from './data';
+import { normalizeData } from './utils';
 
 
 /* Code */
+const pupils = normalizeData(fakePupils);
 
 
-/* initialState */
-const initialState = {};
+/* InitialState */
+const initialState = {
+  loading: true,
+};
 
 
 /* Types */
+const GET_DATA = 'data-get';
 
 
-/* Duck */
+/* Reducer */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case GET_DATA:
+      return {
+        ...state,
+        pupils,
+        loading: false,
+      };
+
     default:
       return state;
   }
@@ -24,6 +37,9 @@ const reducer = (state = initialState, action = {}) => {
 
 
 /* Action creators */
+export const getData = () => ({
+  type: GET_DATA,
+});
 
 
 /* Export */
