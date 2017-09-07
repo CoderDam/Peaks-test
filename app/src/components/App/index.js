@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 
 /* Local import */
+import Pupils from 'src/containers/Pupils';
 
 
 /* Code */
@@ -11,12 +12,6 @@ class App extends React.Component {
   /* PROPS */
   static propTypes = {
     getData: PropTypes.func.isRequired,
-    pupils: PropTypes.object,
-    loading: PropTypes.bool.isRequired,
-  }
-
-  static defaultProps = {
-    pupils: {},
   }
 
   /* LIFECYCLES */
@@ -29,16 +24,7 @@ class App extends React.Component {
     return (
       <main id="app">
         Tous en classe !
-        {!this.props.loading &&
-          <ul>
-            {this.props.pupils.allIds.map(pupilId => (
-              <li key={pupilId}>
-                <span>{this.props.pupils.byId[pupilId].id} : </span>
-                <span>{this.props.pupils.byId[pupilId].name}</span>
-              </li>
-            ))}
-          </ul>
-        }
+        <Pupils />
       </main>
     );
   }

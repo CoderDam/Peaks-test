@@ -3,24 +3,24 @@ import { connect } from 'react-redux';
 
 
 /* Local import */
-import App from 'src/components/App';
-import { getData } from 'src/store/reducer';
+import Pupils from 'src/components/Pupils';
 
 
 /* Code */
 // State
-const mapStateToProps = undefined;
+const mapStateToProps = state => ({
+  loading: state.loading,
+  pupils: state.pupils,
+});
 
 // Dispatch
-const mapDispatchToProps = dispatch => ({
-  getData: () => dispatch(getData()),
-});
+const mapDispatchToProps = undefined;
 
 // Connect
 const container = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(Pupils);
 
 
 /* Export */
