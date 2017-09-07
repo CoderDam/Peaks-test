@@ -1,0 +1,11 @@
+# Thumbs Files Mac
+.DS_Store
+
+# Thumbs Files Windows
+Thumbs.db
+
+# Dependencies Folder
+node_modules/
+
+# Public Folder
+public/
