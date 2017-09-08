@@ -7,12 +7,13 @@ import PropTypes from 'prop-types';
 
 
 /* Code */
-const Pupil = ({ pupil }) => (
+const Pupil = ({ pupil, actions }) => (
   <div className="pupil">
     <div className="pupil-image">
       <img src={pupil.picture} alt={pupil.name} />
     </div>
-    <span className="pupil-name">{pupil.name}</span>
+    <p className="pupil-name">{pupil.name}</p>
+    <button className="pupil-update" onClick={actions.updatePupil}>✎</button>
   </div>
 );
 
@@ -23,6 +24,7 @@ Pupil.propTypes = {
     name: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
   }).isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 

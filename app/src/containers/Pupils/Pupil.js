@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 /* Local import */
 import Pupil from 'src/components/Pupils/Pupil';
+import { updatePupil } from 'src/store/reducer';
 
 
 /* Code */
@@ -13,7 +14,11 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 // Dispatch
-const mapDispatchToProps = undefined;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  actions: {
+    updatePupil: () => dispatch(updatePupil(ownProps.id)),
+  },
+});
 
 // Connect
 const container = connect(

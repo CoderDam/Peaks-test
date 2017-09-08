@@ -16,6 +16,7 @@ const initialState = {
   form: {
     display: false,
     type: '',
+    id: '',
     inputs: {
       name: '',
       picture: '',
@@ -28,6 +29,7 @@ const initialState = {
 /* Types */
 const GET_DATA = 'data-get';
 const ADD_PUPIL = 'pupil-add';
+const UPDATE_PUPIL = 'pupil-update';
 const UPDATE_PUPILS = 'pupils-update';
 const UPDATE_FIELD = 'form-field-update';
 
@@ -49,15 +51,31 @@ const reducer = (state = initialState, action = {}) => {
           ...state.form,
           display: true,
           type: 'new',
+          id: Math.max(...state.pupils.allIds) + 1,
+        },
+      };
+
+    case UPDATE_PUPIL:
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          display: true,
+          type: 'update',
+          id: action.id,
+          inputs: {
+            name: state.pupils.byId[action.id].name,
+            picture: state.pupils.byId[action.id].picture,
+            email: state.pupils.byId[action.id].email,
+          },
         },
       };
 
     case UPDATE_PUPILS:
     {
+      const { name, email, picture } = state.form.inputs;
+      const { id } = state.form;
       if (state.form.type === 'new') {
-        const { name, email, picture } = state.form.inputs;
-        const lastId = Math.max(...state.pupils.allIds);
-        const id = lastId + 1;
         const newPupil = {
           id,
           name,
@@ -75,6 +93,27 @@ const reducer = (state = initialState, action = {}) => {
         return {
           ...state,
           pupils: newPupils,
+          form: initialState.form,
+        };
+      }
+
+      if (state.form.type === 'update') {
+        const currentPupil = {
+          ...state.pupils.byId[id],
+          name,
+          email,
+          picture,
+        };
+
+        return {
+          ...state,
+          pupils: {
+            ...state.pupils,
+            byId: {
+              ...state.pupils.byId,
+              [id]: currentPupil,
+            },
+          },
           form: initialState.form,
         };
       }
@@ -111,6 +150,11 @@ export const addPupil = () => ({
 
 export const updatePupils = () => ({
   type: UPDATE_PUPILS,
+});
+
+export const updatePupil = id => ({
+  type: UPDATE_PUPIL,
+  id,
 });
 
 export const changeField = ({ field, value }) => ({
