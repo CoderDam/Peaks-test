@@ -30,6 +30,7 @@ const initialState = {
 const GET_DATA = 'data-get';
 const ADD_PUPIL = 'pupil-add';
 const UPDATE_PUPIL = 'pupil-update';
+const DELETE_PUPIL = 'pupil-delete';
 const UPDATE_PUPILS = 'pupils-update';
 const UPDATE_FIELD = 'form-field-update';
 
@@ -70,6 +71,24 @@ const reducer = (state = initialState, action = {}) => {
           },
         },
       };
+
+    case DELETE_PUPIL:
+    {
+      const { allIds, byId } = state.pupils;
+      const newIds = allIds.filter(id => id !== action.id);
+      const newList = {};
+      newIds.forEach((id) => {
+        newList[id] = byId[id];
+      });
+
+      return {
+        ...state,
+        pupils: {
+          allIds: newIds,
+          byId: newList,
+        },
+      };
+    }
 
     case UPDATE_PUPILS:
     {
@@ -148,13 +167,18 @@ export const addPupil = () => ({
   type: ADD_PUPIL,
 });
 
-export const updatePupils = () => ({
-  type: UPDATE_PUPILS,
-});
-
 export const updatePupil = id => ({
   type: UPDATE_PUPIL,
   id,
+});
+
+export const deletePupil = id => ({
+  type: DELETE_PUPIL,
+  id,
+});
+
+export const updatePupils = () => ({
+  type: UPDATE_PUPILS,
 });
 
 export const changeField = ({ field, value }) => ({

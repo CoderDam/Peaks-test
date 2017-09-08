@@ -14,6 +14,7 @@ const Pupil = ({ pupil, actions }) => (
     </div>
     <p className="pupil-name">{pupil.name}</p>
     <button className="pupil-update" onClick={actions.updatePupil}>✎</button>
+    <button className="pupil-delete" onClick={actions.deletePupil}>✖</button>
   </div>
 );
 

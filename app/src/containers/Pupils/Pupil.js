@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 /* Local import */
 import Pupil from 'src/components/Pupils/Pupil';
-import { updatePupil } from 'src/store/reducer';
+import { updatePupil, deletePupil } from 'src/store/reducer';
 
 
 /* Code */
@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   actions: {
     updatePupil: () => dispatch(updatePupil(ownProps.id)),
+    deletePupil: () => dispatch(deletePupil(ownProps.id)),
   },
 });
 
