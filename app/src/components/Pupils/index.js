@@ -14,6 +14,7 @@ const Pupils = ({ pupils, loading, form, actions }) => (
     <button
       id="app-pupils-add"
       onClick={actions.addPupil}
+      title="ajouter un élève"
     >+</button>
     {!loading &&
       <ul id="app-pupils-list">

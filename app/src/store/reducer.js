@@ -8,6 +8,7 @@ import { normalizeData } from './utils';
 
 /* Code */
 const pupils = normalizeData(fakePupils);
+export const regex = /(https?:)?\/\/?[^'"<>]+?\.(jpg|jpeg|gif|png)/g;
 
 
 /* InitialState */
@@ -15,9 +16,9 @@ const initialState = {
   loading: true,
   form: {
     display: false,
+    review: false,
     type: '',
     id: '',
-    errors: [],
     inputs: {
       name: '',
       picture: '',
@@ -94,7 +95,23 @@ const reducer = (state = initialState, action = {}) => {
 
     case UPDATE_PUPILS:
     {
-      const { name, email, picture } = state.form.inputs;
+      const { name, email } = state.form.inputs;
+      let { picture } = state.form.inputs;
+
+      if (!picture.trim()) picture = 'http://newsroom.almonds.com/sites/default/files/default_images/avatar-placeholder-female.jpg';
+
+      if (!name.trim()
+      || !email.trim()
+      || !picture.match(regex)) {
+        return {
+          ...state,
+          form: {
+            ...state.form,
+            review: true,
+          },
+        };
+      }
+
       const { id } = state.form;
 
       if (state.form.type === 'new') {

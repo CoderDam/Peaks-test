@@ -1,13 +1,14 @@
 /* Npm import */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 
 /* Local import */
 
 
 /* Code */
-const Form = ({ form, actions }) => (
+const Form = ({ form, regex, actions }) => (
   // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
   <form
     id="app-pupils-form"
@@ -19,7 +20,9 @@ const Form = ({ form, actions }) => (
   >
     {/* NAME */}
     <input
-      className="input"
+      className={classNames('input', {
+        'input--incorrect': form.review && !form.inputs.name.trim(),
+      })}
       id="app-pupils-form-input-name"
       value={form.inputs.name}
       placeholder="nom de l'élève"
@@ -35,7 +38,9 @@ const Form = ({ form, actions }) => (
     {/* E-MAIL */}
     <input
       type="email"
-      className="input"
+      className={classNames('input', {
+        'input--incorrect': form.review && !form.inputs.email.trim(),
+      })}
       id="app-pupils-form-input-email"
       value={form.inputs.email}
       placeholder="adresse mail de l'élève"
@@ -48,11 +53,13 @@ const Form = ({ form, actions }) => (
 
     {/* PICTURE */}
     <input
-      className="input"
+      className={classNames('input', {
+        'input--incorrect': form.review && (!form.inputs.picture.trim() || !form.inputs.picture.match(regex)),
+      })}
       id="app-pupils-form-input-picture"
       value={form.inputs.picture}
-      placeholder="url de la photo de l'élève"
-      title="url de la photo de l'élève"
+      placeholder="url photo (jpg, jpeg, gif, png)"
+      title="url photo (jpg, jpeg, gif, png)"
       onChange={(evt) => {
         const { value } = evt.target;
         actions.inputs.change({ field: 'picture', value });
@@ -81,9 +88,11 @@ const Form = ({ form, actions }) => (
 Form.propTypes = {
   form: PropTypes.shape({
     display: PropTypes.bool.isRequired,
+    review: PropTypes.bool.isRequired,
     type: PropTypes.string.isRequired,
     inputs: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
+  regex: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
