@@ -8,23 +8,30 @@ import PropTypes from 'prop-types';
 
 /* Code */
 const Form = ({ form, actions }) => (
+  // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
   <form
-    className="app-pupils-form"
+    id="app-pupils-form"
     onSubmit={(evt) => {
       evt.preventDefault();
       actions.update();
     }}
+    onKeyUp={evt => evt.key === 'Escape' && actions.hideForm()}
   >
+    {/* NAME */}
     <input
       className="input"
       id="app-pupils-form-input-name"
       value={form.inputs.name}
       placeholder="nom de l'élève"
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus
       onChange={(evt) => {
         const { value } = evt.target;
         actions.inputs.change({ field: 'name', value });
       }}
     />
+
+    {/* E-MAIL */}
     <input
       type="email"
       className="input"
@@ -36,6 +43,8 @@ const Form = ({ form, actions }) => (
         actions.inputs.change({ field: 'email', value });
       }}
     />
+
+    {/* PICTURE */}
     <input
       className="input"
       id="app-pupils-form-input-picture"
@@ -46,7 +55,20 @@ const Form = ({ form, actions }) => (
         actions.inputs.change({ field: 'picture', value });
       }}
     />
-    <button type="submit">OK</button>
+
+    {/* BUTTONS */}
+    <button
+      id="app-pupils-form-cancel"
+      className="button"
+      type="button"
+      onClick={actions.hideForm}
+    >✘</button>
+
+    <button
+      id="app-pupils-form-add"
+      className="button"
+      type="submit"
+    >✔</button>
   </form>
 );
 

@@ -17,6 +17,7 @@ const initialState = {
     display: false,
     type: '',
     id: '',
+    errors: [],
     inputs: {
       name: '',
       picture: '',
@@ -33,6 +34,7 @@ const UPDATE_PUPIL = 'pupil-update';
 const DELETE_PUPIL = 'pupil-delete';
 const UPDATE_PUPILS = 'pupils-update';
 const UPDATE_FIELD = 'form-field-update';
+const HIDE_FORM = 'form-hide';
 
 
 /* Reducer */
@@ -94,6 +96,7 @@ const reducer = (state = initialState, action = {}) => {
     {
       const { name, email, picture } = state.form.inputs;
       const { id } = state.form;
+
       if (state.form.type === 'new') {
         const newPupil = {
           id,
@@ -152,6 +155,12 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
 
+    case HIDE_FORM:
+      return {
+        ...state,
+        form: initialState.form,
+      };
+
     default:
       return state;
   }
@@ -185,6 +194,10 @@ export const changeField = ({ field, value }) => ({
   type: UPDATE_FIELD,
   field,
   value,
+});
+
+export const hideForm = () => ({
+  type: HIDE_FORM,
 });
 
 

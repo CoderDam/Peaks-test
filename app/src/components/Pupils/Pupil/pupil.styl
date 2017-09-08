@@ -5,7 +5,14 @@
 
 // Classes
 .pupil
-  padding: 1rem
+  background-image: radial-gradient(
+    ellipse farthest-corner at 80px 50px,
+    yellow 0%,
+    khaki 80%
+  )
+  margin: 0 .2rem 1.5rem
+  padding: .8rem
+  position: relative
   text-align: center
 
   &-image
@@ -14,17 +21,75 @@
     width: 100px
 
     & img
-      width: 100%
       height: auto
+      width: 100%
+
+  &-name
+    display: block
+    font-family: Kalam, cursive
+    font-size: 1.2em
+    margin-top: .5em
+    width: 100px
+
+    & a
+      position: relative
+
+      &::after
+        background-color: black
+        content:''
+        display: block
+        height: 1px
+        position: absolute
+        bottom: 3px
+        left: 50%
+        width: 0
+
+      &:hover
+        &::after
+          transition: .3s
+          width: 120%
+          left: -10%
+
+  & .button
+    background-color: peru
+    border: 0
+    color: white
+    padding: .1em .4em
+    position: absolute
+    top: 0
+
+    &:active
+      transform: scale(.9)
+
+  &-delete
+    right: 0
+    border-bottom-left-radius: .6em
+
+    &:active
+      background-color: darkred
+
+  &-update
+    left: 0
+    border-bottom-right-radius: .6em
+
+    &:active
+      background-color: lightseagreen
 
 
 /*****************************
  *          DESKTOP          *
  *****************************/
 @media (min-width:768px)
-  // IDs
-  // #app
-
-
-
   // Classes
+  .pupil
+    & .button
+      transition-property: background, color
+      transition-duration: .3s
+
+    &-update
+      &:hover
+        background-color: lightseagreen
+
+    &-delete
+      &:hover
+        background-color: darkred

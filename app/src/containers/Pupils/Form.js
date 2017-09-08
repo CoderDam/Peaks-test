@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 /* Local import */
 import Form from 'src/components/Pupils/Form';
-import { changeField, updatePupils } from 'src/store/reducer';
+import { changeField, updatePupils, hideForm } from 'src/store/reducer';
 
 
 /* Code */
@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: {
     update: () => dispatch(updatePupils()),
+    hideForm: () => dispatch(hideForm()),
     inputs: {
       change: fieldObj => dispatch(changeField(fieldObj)),
     },

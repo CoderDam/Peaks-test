@@ -4,11 +4,33 @@
 // IDs
 #app
   &-pupils
+    margin: 2em auto
+    max-width: 90vw
+    position: relative
+
+    &-add
+      position: absolute
+      left: 50%
+      top: -1em
+      border-radius: 100%
+      font-weight: bold
+      font-size: 1.2em
+      background-color: lightseagreen
+      border: 0
+      width: 1.2em
+      height: 1.2em
+      padding: 0
+      transform: translateX(-50%)
+
+      &:active
+        transform: translateX(-50%) scale(.9)
+
     &-list
       display: flex
       flex-wrap: wrap
       justify-content: space-around
       list-style: none
+      padding-top: .8em
 
 // Classes
 

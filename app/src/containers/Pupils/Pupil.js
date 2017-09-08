@@ -11,6 +11,7 @@ import { updatePupil, deletePupil } from 'src/store/reducer';
 // State
 const mapStateToProps = (state, ownProps) => ({
   pupil: state.pupils.byId[ownProps.id],
+  turn: (Math.floor(Math.random() * (40 + 40 + 1)) - 40) / 10,
 });
 
 // Dispatch

@@ -2,8 +2,67 @@
  *           MOBILE          *
  *****************************/
 // IDs
+#app
+  &-pupils
+    &-form
+      animation: .5s entry both
+      background-color: white
+      box-shadow: 0 4px 10px 1px black
+      left: 50%
+      padding: 1em
+      position: absolute
+      text-align: center
+      top: 1.2em
+      transform: translateX(-50%) rotate(3deg)
+      width: 18em
+
+      &-cancel
+        float: left
+        color: darkred
+
+        &:active
+          background-color: darkred
+
+      &-add
+        float: right
+        color: darkgreen
+
+        &:active
+          background-color: darkgreen
+
 
 // Classes
+#app
+  &-pupils
+    &-form
+      & .input
+        border-width: 0 0 1px
+        border-color: grey
+        display: block
+        font-size: 1.1em
+        font-family: Kalam, cursive
+        margin-bottom: 1em
+        width: 100%
+        transition-property: border, color
+        transition-duration: .3s
+
+        &:focus
+          border-color: lightseagreen
+          color: lightseagreen
+
+      & .button
+        border-radius: 100%
+        border: 0
+        height: 2em
+        text-align: center
+        transition-property: background, color
+        transition-duration: .3s
+        width 2em
+
+        &:active
+          color: white
+          transform: scale(.9)
+
 
 
 /*****************************
@@ -11,8 +70,28 @@
  *****************************/
 @media (min-width:768px)
   // IDs
-  // #app
+  #app
+    &-pupils
+      &-form
+        width: 25em
 
+        &-cancel
+          &:hover
+            background-color: darkred
+            color: white
+
+        &-add
+          &:hover
+            background-color: darkgreen
+            color: white
 
 
   // Classes
+
+
+/*****************************
+ *        ANIMATIONS         *
+ *****************************/
+@keyframes entry
+  0%
+    left: -120%
