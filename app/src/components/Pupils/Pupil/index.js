@@ -20,10 +20,12 @@ const Pupil = ({ pupil, turn, actions }) => (
     </p>
     <button
       className="pupil-update button"
+      title={`modifier les info de ${pupil.name}`}
       onClick={actions.updatePupil}
     >✎</button>
     <button
       className="pupil-delete button"
+      title={`supprimer ${pupil.name}`}
       onClick={actions.deletePupil}
     >✖</button>
   </div>

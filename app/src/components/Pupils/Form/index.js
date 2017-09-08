@@ -23,6 +23,7 @@ const Form = ({ form, actions }) => (
       id="app-pupils-form-input-name"
       value={form.inputs.name}
       placeholder="nom de l'élève"
+      title="nom de l'élève"
       // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
       onChange={(evt) => {
@@ -38,6 +39,7 @@ const Form = ({ form, actions }) => (
       id="app-pupils-form-input-email"
       value={form.inputs.email}
       placeholder="adresse mail de l'élève"
+      title="adresse mail de l'élève"
       onChange={(evt) => {
         const { value } = evt.target;
         actions.inputs.change({ field: 'email', value });
@@ -50,6 +52,7 @@ const Form = ({ form, actions }) => (
       id="app-pupils-form-input-picture"
       value={form.inputs.picture}
       placeholder="url de la photo de l'élève"
+      title="url de la photo de l'élève"
       onChange={(evt) => {
         const { value } = evt.target;
         actions.inputs.change({ field: 'picture', value });
@@ -60,6 +63,7 @@ const Form = ({ form, actions }) => (
     <button
       id="app-pupils-form-cancel"
       className="button"
+      title="annuler"
       type="button"
       onClick={actions.hideForm}
     >✘</button>
@@ -67,6 +71,7 @@ const Form = ({ form, actions }) => (
     <button
       id="app-pupils-form-add"
       className="button"
+      title="valider"
       type="submit"
     >✔</button>
   </form>
