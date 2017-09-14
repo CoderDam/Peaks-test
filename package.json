@@ -23,16 +23,23 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
+    "jsdom": "^11.2.0",
+    "path": "^0.12.7",
     "postcss-brunch": "~0.5.0",
     "stylus-brunch": "^2.10.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "chai": "^4.1.2",
     "classnames": "^2.2.5",
+    "mocha": "^3.5.3",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2"
+  },
+  "scripts": {
+    "test": "mocha --recursive --reporter spec test/.setup.js test/"
   }
 }
